@@ -1,0 +1,51 @@
+package testpkg;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class DataProviderTest {
+	
+	//Data provider returning 2D array of 4*2 matrix
+	@DataProvider(name = "dataProvider1")
+	   public Object[][] dataProviderMethod1() {
+	      return new Object[][] {{"standard_user","secret_sauce"},
+	    	  {"User2","Pass2"},{"User3","pass3"},{"User4","pass4"}};
+	   }
+	   //This method is bound to the above data provider
+	   //The test case will run 3 times with different set of values
+	   @Test(dataProvider = "dataProvider1")
+	   public void sampleTest(String uname, String pass) throws InterruptedException {
+			
+		   System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
+		   ChromeOptions options = new ChromeOptions();
+		   options.addArguments("--remote-allow-origins=*");
+		   WebDriver driver = new ChromeDriver(options);
+		   String urlString="https://www.saucedemo.com/";
+				
+			driver.get(urlString);
+			driver.manage().window().maximize();
+				
+			driver.findElement(By.id("user-name")).sendKeys(uname);
+			driver.findElement(By.id("password")).sendKeys(pass);
+					
+			WebElement loginbtnElement=driver.findElement(By.id("login-button"));
+			loginbtnElement.click();
+			Thread.sleep(2000);
+			////
+			WebElement foundElement=driver.findElement(By.xpath("a[@class='shopping_cart_link']"));
+			if(foundElement.isDisplayed())
+			{
+				System.out.println("Test Pass: Uname="+uname+"Pass="+ pass);
+			}else {
+				{
+					System.out.println("Test Failed: Uname="+uname+"Pass="+ pass);
+				}
+			}
+	   }
+
+}

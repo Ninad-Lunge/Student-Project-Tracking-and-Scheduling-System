@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.dashboard{
+    width: 100%;
+    height: 100vh;
+}
+.navbar{
+    width: 90px;
+    height: 100vh;
+    background: #2E2E48;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.logo{
+    width: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+}
+.icons img, .profile img{
+    width: 35px;
+    display: block;
+    margin: 40px auto 0;
+    cursor: pointer;
+}
+.profile{
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+    left: 25px;
+}
+.top-bar{
+    width: 99%;
+    height: 25%;
+    padding-top: 0.5%;
+}
+.top-bar input[type=text] {
+    width: 25%;
+    float: right;
+    padding: 6px;
+    border: 1px solid black;
+    font-size: 17px;
+    border-radius: 7px;
+}
+
+form{
+    margin-left: 100px;
+    padding: 1%;
+}
+form input{
+    padding: 5px;
+    width: 20%;
+}
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+  } 
+  
+  td {
+    border: 2px solid black;
+    text-align:center;
+    vertical-align: middle;
+    padding:15px;
+  }
+  th{
+    border: 2px solid black;
+    text-align:center;
+    vertical-align: middle;
+    padding:15px;
+    background-color: rgb(186, 181, 181);
+  }
+table.c {
+    table-layout: auto;
+    width: 70%;  
+    top:5%;
+    margin:auto;
+  }

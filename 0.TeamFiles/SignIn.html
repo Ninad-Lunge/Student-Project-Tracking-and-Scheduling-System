@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mini.css">
+    <title>Sign In Page</title> 
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align:center;">Sign In</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="Email">Email<br></label>
+                <input type="text" id="Email" placeholder="Enter your College Email" name="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password<br></label>
+                <input type="password" id="password" placeholder="Enter Password"  name="password" required>
+            </div>
+            
+                <p style="text-align:center;"><small>Having trouble in sign in ?</small></p>
+                <p style="text-align:center;"><small>OR</small></p>
+                <button id="googleSignInButton"><img src="C:\Users\hp\Downloads\miniproject\google.png" alt="Google img" style="width:20px;height:20px;">       
+                Sign in with Google</button>
+                <p>Continue as:</p>
+                <ul>Student  Administrators</ul>
+                <p><button type="Sign In">Sign in</button></p>
+            </div>
+            
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- // Function to initialize Google Sign-In
+function initGoogleSignIn() {
+    gapi.load('auth2', function () {
+        gapi.auth2.init({
+            client_id: 'YOUR_CLIENT_ID', // Replace with your Google OAuth client ID
+        });
+    });
+}
+
+// Function to handle Google Sign-In
+function handleGoogleSignIn() {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signIn().then(function (googleUser) {
+        const profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId());
+        console.log("Name: " + profile.getName());
+        console.log("Email: " + profile.getEmail());
+        // You can perform further actions here, like sending the user's info to your server.
+    });
+}
+
+// Load the Google API client library and initialize Google Sign-In when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    const googleSignInButton = document.getElementById("googleSignInButton");
+    
+    googleSignInButton.addEventListener("click", handleGoogleSignIn);
+    
+    // Load the Google API client library
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/platform.js';
+    script.onload = initGoogleSignIn;
+    document.head.appendChild(script);
+}); -->

@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #250f54;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 7px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight:lighter;
+}
+
+input[type="text"],input[type="password"]
+{
+    border:none;
+    background-color: #a3a2a2;
+    padding :5px 7px;
+    border-radius: 7px;
+    width: 270px;
+    height: 25px;
+}
+
+button[type="Sign In"] 
+{
+    background-color:rgb(188, 55, 7);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border:none;
+    font-weight: bold;
+    padding: 5px 7px;
+    border-radius: 7px;
+    width: 270px;
+    height: 40px;
+}
+
+button:hover {
+    background-color:rgb(188, 55, 7);
+}
+
+.center {
+    text-align: center;
+  }  
+
+/* Add any additional styling you need */
+
+/* document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Here, you can add your login logic.
+        // For simplicity, let's just display an alert.
+        if (username === "user" && password === "password") {
+            alert("Login successful!");
+        } else {
+            alert("Login failed. Please check your credentials.");
+        }
+    });
+}); */
