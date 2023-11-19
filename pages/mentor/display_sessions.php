@@ -1,8 +1,13 @@
 <?php
     include('../../php/config.php');
 
-    //TEMP DATA
-    $mentor_id = 3;
+    $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+    $query = "SELECT id from mentor WHERE user_id = " . $user_id;
+    $s = $con->prepare($query);
+    $s->execute();
+    $mentor_id_result = $s->get_result();
+    $mentor_id_row = $mentor_id_result->fetch_assoc();
+    $mentor_id = $mentor_id_row['id'];
 
     $sql = "SELECT * FROM session WHERE id = (SELECT session_id FROM session_mentor where mentor_id = $mentor_id)";
     $result = $con->query($sql);

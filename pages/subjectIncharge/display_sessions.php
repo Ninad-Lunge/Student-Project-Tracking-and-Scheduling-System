@@ -1,14 +1,25 @@
 <?php
     include('../../php/config.php');
 
-    $sql = "SELECT * FROM session";
+    // $sql = "SELECT * FROM session";
+    // $result = $con->query($sql);
+
+    $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+    $query = "SELECT id from subjectincharge WHERE user_id = " . $user_id;
+    $s = $con->prepare($query);
+    $s->execute();
+    $subIn_id_result = $s->get_result();
+    $subIn_id_row = $subIn_id_result->fetch_assoc();
+    $subIn_id = $subIn_id_row['id'];
+
+    $sql = "SELECT * FROM session WHERE s_Incharge_Id = $subIn_id";
     $result = $con->query($sql);
 
     $row = 0;
 
     if ($result->num_rows > 0) {
         while ($row !== false && $row = $result->fetch_assoc()) {
-            $session_id = $row['id']; 
+            $session_id = $row['id'];
             echo '<div class="col">
                 <a href="superAdminProjectOverview.php?session_id=' . $session_id . '" class="text-decoration-none text-reset">
                 <div class="card border-dark mb-3" style="max-width: 18rem;">

@@ -66,5 +66,5 @@
         }
     }
 
-    mysqli_close($con);
+    $con->close();
 ?>

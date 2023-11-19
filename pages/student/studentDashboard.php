@@ -16,7 +16,9 @@
                 <?php include("../../components/studentNavbar.php"); ?>
                 <div class="col py-3 min-vh-100">
                     <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <?php include('display_projects.php'); ?>
+                        <?php
+                            include("display_projects.php");
+                        ?>
                     </div>
                 </div>
             </div>
