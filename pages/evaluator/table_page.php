@@ -36,5 +36,5 @@
         }
     }
 
-    $con->close();
+$con->close();
 ?>

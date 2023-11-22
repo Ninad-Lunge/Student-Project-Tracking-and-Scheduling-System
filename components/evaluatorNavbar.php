@@ -5,13 +5,18 @@
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-middle" id="menu">
             <li class="nav-item pb-3">
-                <a href="../pages/mentor/studentDashboard.php" class="nav-link align-middle px-0">
+                <a href="../pages/subjectIncharge/subjectInchargeDashboard.php" class="nav-link align-middle px-0">
                     <i class="fa-solid fa-house fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
             <li class="nav-item pb-3">
                 <a href="#" class="nav-link align-middle px-0">
                     <i class="fa-solid fa-calendar-days fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
+                </a>
+            </li>
+            <li class="nav-item pb-3">
+                <a href="createSession.php" class="nav-link align-middle px-0">
+                    <i class="fa-solid fa-square-plus fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
         </ul>

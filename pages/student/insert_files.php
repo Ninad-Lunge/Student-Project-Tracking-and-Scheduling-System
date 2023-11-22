@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $targetDir = "../../uploads/project_files/";
     
-    // Handle file upload
     $fileName = isset($_FILES["file"]["name"]) ? $title . "-" . $_FILES["file"]["name"] : "";
     $targetFilePath = $targetDir . $fileName;
     $tname = isset($_FILES["file"]["tmp_name"]) ? $_FILES["file"]["tmp_name"] : "";

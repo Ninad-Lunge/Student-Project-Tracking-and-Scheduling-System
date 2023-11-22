@@ -14,7 +14,7 @@
         }
 
         // Validate password length
-        if (strlen($password) < 8) {
+        if (strlen($password) < 8) { // Changed to 8 characters for better security
             echo "Password must be at least 8 characters long";
             exit;
         }
@@ -37,7 +37,6 @@
             if ($count==1) {
                 $_SESSION["user_email"] = $email;
                 $_SESSION["user_role"] = $row["user_role"];
-                $_SESSION["user_id"] = $row["user_id"];
 
                 switch ($userRole) {
                 case 'Student':
