@@ -2,7 +2,7 @@
     include('../../php/config.php');
 
     $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
-    $query = "SELECT id from evaluator WHERE user_id = " . $user_id;
+    $query = "SELECT id from evaluators WHERE user_id = " . $user_id;
     $s = $con->prepare($query);
     $s->execute();
     $mentor_id_result = $s->get_result();

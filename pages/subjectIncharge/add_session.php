@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../../php/config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // header("Location:project_details.php?PROJECT_ID=$project_id&success=1");
-            echo "File Successfully uploaded";
+            // echo "File Successfully uploaded";
 
             $session_id_query = "SELECT id FROM session WHERE title='$title'";
             $session_id_result = mysqli_query($con, $session_id_query);
@@ -51,25 +52,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $query = "INSERT INTO projects (PROJECT_TITLE, DOMAIN, DESCRIPTION, TEAM_LEADER, LEADER_PRN, MEMBER_1_PRN, MEMBER_2_PRN, MEMBER_3_PRN, SESSION_ID, mentor_id) 
                         VALUES ('$proj_title', '$domain', '$description', '$leader', '$lead_prn', '$m1_prn', '$m2_prn', '$m3_prn', '$session_id', '$mentor_id')";
 
-                        if ($con->query($query) === TRUE) {
-                            echo "Record inserted successfully.<br>";
-                        } else {
-                            echo "Error: " . $query . "<br>" . $con->error;
-                        }
+                        // if ($con->query($query) === TRUE) {
+                        //     echo "Record inserted successfully.<br>";
+                        // } else {
+                        //     echo "Error: " . $query . "<br>" . $con->error;
+                        // }
                     }
 
                     fclose($handle);
+                    $user_id = $_SESSION["user_id"];
+                    header("Location: subjectInchargeDashboard.php?user_id=$user_id");
                 }
             } else {
                 echo "Error fetching session_id: " . $con->error;
             }
-
-            echo '<script>
-                    var closeButton = document.getElementById("closeForm");
-                    if (closeButton) {
-                        closeButton.click();
-                    }
-                    </script>';
         } else {
             echo "Error: " . $sql . "<br>" . $con->error;
         }

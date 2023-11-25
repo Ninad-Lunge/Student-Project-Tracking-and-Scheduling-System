@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li class="nav-item pb-4">
-                <a href="createSession.php" class="nav-link align-middle px-0">
+                <a href="createSession.php?user_id=<?php echo $user_id; ?>" class="nav-link align-middle px-0">
                     <i class="fa-solid fa-square-plus fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
@@ -37,7 +37,7 @@
                 <img src="../../assests/images/icon _User Cog_.svg" alt="img" width="30">
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <!-- <li><a class="dropdown-item" href="#">New project...</a></li> -->
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li>

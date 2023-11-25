@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details</title>
+    <title>Evaluation Sheet</title>
     <?php require('../../php/links.php'); ?>
 </head>
-<body>
-    <div class="contaniner-fluid pe-3">
+<body class="me-3">
+    <div class="contaniner">
         <div class="row">
             <?php include("../../components/subjectInchargeNavbar.php"); ?>
-            <div class="col py-3 min-vh-100">
+            <div class="col min-vh-100">
                 <?php
                     if (isset($_GET['PROJECT_ID'])) {
                         $project_id = intval($_GET['PROJECT_ID']);
@@ -65,7 +65,7 @@
                                                     echo "</tr>";
                                                 }
                                             } else {
-                                                echo "<tr><td colspan='5'>No meeting details found for this project.</td></tr>";
+                                                echo "<tr><td colspan='5'>No details found for this project.</td></tr>";
                                             }
                                             $stmt->close();
                                         } else {
@@ -90,20 +90,86 @@
                 <div class="container-fluid px-5 border border-secondary rounded">
                     <div class="row py-3">
                         <div class="col">
-                            <h5>Weekly Evaluation Details</h5>
+                            <h5>Evaluation Round 1 </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr class="table table-secondary">
+                                    <th scope="col">Individual Evaluation</th>
+                                    <th scope="col">Objective & methodology of work</th>
+                                    <th scope="col">Planning & team structure</th>
+                                    <th scope="col">Overall regularity & performance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="individual_evaluation"></td>
+                                    <td><input type="text" name="objective_methodology"></td>
+                                    <td><input type="text" name="planning_team_structure"></td>
+                                    <td><input type="text" name="overall_regularity_performance"></td>
+                                </tr> 
+                            </tbody>
+                            <tbody>
+                                <?php
+                                    include('../../php/config.php');
+
+                                    $sql = "SELECT * FROM meeting_details WHERE PROJECT_ID = ?";
+                                    $stmt = $con->prepare($sql);
+
+                                    if ($stmt) {
+                                        $stmt->bind_param("i", $project_id);
+                                        $stmt->execute();
+                                        $result = $stmt->get_result();
+
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<td>" . $row['individual_evaluation'] . "</td>";
+                                                echo "<td>" . $row['objective_methodology'] . "</td>";
+                                                echo "<td>" . $row['planning_team_structure'] . "</td>";
+                                                echo "<td>" . $row['overall_regularity_performance'] . "</td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='5'>No details found for this project.</td></tr>";
+                                        }
+                                        $stmt->close();
+                                    } else {
+                                        echo "Error in preparing the SQL statement.";
+                                    }
+                                    $con->close();
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="container-fluid my-3 px-5 pt-3 border border-secondary rounded">
+                    <div class="row py-3">
+                        <div class="col">
+                            <h5>Evaluation Round 2 </h5>
                         </div>
                     </div>
                     <div class="row">
                     <table class="table">
                         <thead>
                             <tr class="table table-secondary">
-                                <th scope="col">Date</th>
-                                <th scope="col">Points of Discussion</th>
-                                <th scope="col">Team Members Present</th>
-                                <th scope="col">Implementation Status</th>
-                                <th scope="col">Rating for Work Progress</th>
+                                <th scope="col">SRS/design</th>
+                                <th scope="col">Project implementation 30%</th>
+                                <th scope="col">Demo</th>
+                                <th scope="col">Overall regularity & performance</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="int" name="SRS"></td>
+                                <td><input type="int" name="Project_implementation"></td>
+                                <td><input type="int" name="Demo"></td>
+                                <td><input type="int" name="overall_regularity_performance"></td>
+                            </tr> 
+                        </tbody>
                         <tbody>
                             <?php
                                 include('../../php/config.php');
@@ -119,15 +185,73 @@
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             echo "<tr>";
-                                            echo "<td>" . $row['date_column'] . "</td>";
-                                            echo "<td>" . $row['points_of_discussion'] . "</td>";
-                                            echo "<td>" . $row['team_members_present'] . "</td>";
-                                            echo "<td>" . $row['implementation_status'] . "</td>";
-                                            echo "<td>" . $row['rating'] . "</td>";
+                                            echo "<td>" . $row['SRS'] . "</td>";
+                                            echo "<td>" . $row['Project_implementation'] . "</td>";
+                                            echo "<td>" . $row['Demo'] . "</td>";
+                                            echo "<td>" . $row['overall_regularity_performance'] . "</td>";
                                             echo "</tr>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='5'>No meeting details found for this project.</td></tr>";
+                                        echo "<tr><td colspan='5'>No details found for this project.</td></tr>";
+                                    }
+                                    $stmt->close();
+                                } else {
+                                    echo "Error in preparing the SQL statement.";
+                                }
+                                $con->close();
+                            ?>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="container-fluid my-3 px-5 pt-3 border border-secondary rounded">
+                    <div class="row py-3">
+                        <div class="col">
+                            <h5>Evaluation Round 3 </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr class="table table-secondary">
+                                <th scope="col">Final SRS</th>
+                                <th scope="col">Project implementation 100%</th>
+                                <th scope="col">Demo & presentation</th>
+                                <th scope="col">Overall regularity & performance</th>
+                            </tr>
+                        </thead>                    
+                        <tbody>
+                        <tbody>
+                            <tr>
+                                <td><input type="int" name="Final_SRS"></td>
+                                <td><input type="int" name="Project_implementation"></td>
+                                <td><input type="int" name="Demo_presentation"></td>
+                                <td><input type="int" name="overall_regularity_performance"></td>
+                            </tr> 
+                        </tbody>
+                            <?php
+                                include('../../php/config.php');
+
+                                $sql = "SELECT * FROM meeting_details WHERE PROJECT_ID = ?";
+                                $stmt = $con->prepare($sql);
+
+                                if ($stmt) {
+                                    $stmt->bind_param("i", $project_id);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row['Final_SRS'] . "</td>";
+                                            echo "<td>" . $row['Project_implementation'] . "</td>";
+                                            echo "<td>" . $row['Demo_presentation'] . "</td>";
+                                            echo "<td>" . $row['overall_regularity_performance'] . "</td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='5'>No details found for this project.</td></tr>";
                                     }
                                     $stmt->close();
                                 } else {

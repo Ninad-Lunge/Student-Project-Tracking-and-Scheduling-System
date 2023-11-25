@@ -5,7 +5,7 @@
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-middle" id="menu">
             <li class="nav-item pb-3">
-                <a href="../pages/mentor/studentDashboard.php" class="nav-link align-middle px-0">
+                <a href="../student/studentDashboard.php?user_id=<?php echo $user_id; ?>" class="nav-link align-middle px-0">
                     <i class="fa-solid fa-house fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
@@ -21,13 +21,13 @@
                 <img src="../../assests/images/icon _User Cog_.svg" alt="img" width="30">
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <!-- <li><a class="dropdown-item" href="#">New project...</a></li> -->
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                <li><a class="dropdown-item" href="../../php/logout.php">Sign out</a></li>
             </ul>
         </div>
     </div>
