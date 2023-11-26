@@ -17,17 +17,22 @@
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-middle" id="menu">
             <li class="nav-item pb-4">
                 <a href="../subjectIncharge/subjectInchargeDashboard.php?user_id=<?php echo $user_id; ?>" class="nav-link align-middle px-0">
-                    <i class="fa-solid fa-house fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
+                    <i class="fa-solid fa-house fs-2" style="color: white" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
             <li class="nav-item pb-4">
                 <a href="createSession.php?user_id=<?php echo $user_id; ?>" class="nav-link align-middle px-0">
-                    <i class="fa-solid fa-square-plus fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
+                    <i class="fa-solid fa-square-plus fs-2" style="color: white" data-bs-toggle="tooltip" data-bs-placement="right" title="Create Session"></i><span class="ms-1 d-none d-sm-inline"></span>
+                </a>
+            </li>
+            <li class="nav-item pb-5">
+                <a href="create_evaluation_panels.php?user_id=<?php echo $user_id; ?>">
+                    <i class="fa-solid fa-graduation-cap fs-2" style="color: white" data-bs-toggle="tooltip" data-bs-placement="right" title="Create Evaluation Panel"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
             <li class="nav-item pb-4">
-                <a href="create_evaluation_panels.php?user_id=<?php echo $user_id; ?>">
-                    <i class="fa-solid fa-graduation-cap fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
+                <a href="export_evaluations.php">
+                    <i class="fa-solid fa-file-export fs-2" style="color: white" data-bs-toggle="tooltip" data-bs-placement="right" title="Export Evaluations"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
         </ul>
@@ -37,7 +42,6 @@
                 <img src="../../assests/images/icon _User Cog_.svg" alt="img" width="30">
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <!-- <li><a class="dropdown-item" href="#">New project...</a></li> -->
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li>

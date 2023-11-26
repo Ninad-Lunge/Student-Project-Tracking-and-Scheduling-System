@@ -45,7 +45,7 @@
                         $stmt->bind_result($title);
                         
                         if ($stmt->fetch()) {
-                            echo "<h4>$title </h4>";
+                            echo "<h4 class='ms-5 pt-3'>$title </h4>";
                         } else {
                             echo "Project not found";
                         }
