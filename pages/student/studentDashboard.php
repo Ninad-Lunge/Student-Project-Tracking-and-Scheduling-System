@@ -27,11 +27,11 @@
                             // Replace 1 with the actual student's user ID
                             $studentUserId = $_SESSION['user_id']; // Replace with your actual session management code
 
-                            $queryMentorReplies = "SELECT mentor_replies.*, users.email AS mentor_email
-                                                    FROM mentor_replies
-                                                    JOIN users ON mentor_replies.sender_id = users.user_id
-                                                    WHERE mentor_replies.receiver_id = ?
-                                                    ORDER BY mentor_replies.timestamp DESC
+                            $queryMentorReplies = "SELECT mentor_responses.*, users.email AS mentor_email
+                                                    FROM mentor_responses
+                                                    JOIN users ON mentor_responses.sender_id = users.user_id
+                                                    WHERE mentor_responses.receiver_id = ?
+                                                    ORDER BY mentor_responses.timestamp DESC
                                                     LIMIT 3";
                             $stmtMentorReplies = $con->prepare($queryMentorReplies);
                             $stmtMentorReplies->bind_param("i", $studentUserId);

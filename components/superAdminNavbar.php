@@ -30,6 +30,11 @@
                     <i class="fa-solid fa-user-plus fs-3" style="color: white" data-bs-toggle="tooltip" data-bs-placement="right" title="Add Subject Incharge"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>
+            <li class="nav-item mb-4">
+                <a href="add_students.php?user_id=<?php echo $user_id; ?>" class="nav-link align-middle px-0">
+                    <i class="fa-solid fa-users fs-3" style="color: white" data-bs-toggle="tooltip" data-bs-placement="right" title="Add Students"></i><span class="ms-1 d-none d-sm-inline"></span>
+                </a>
+            </li>
         </ul>
         <hr>
         <div class="dropdown p-3 pt-1">

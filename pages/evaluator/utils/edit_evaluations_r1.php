@@ -1,39 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include('../../../php/config.php');
-
-    // Get updated values from the form
-    $updated_individual_evaluation = $_POST['individual_evaluation'];
-    $updated_objective_methodology = $_POST['objective_methodology'];
-    $updated_planning_team_structure = $_POST['planning_team_structure'];
-    $updated_overall_regularity_performance = $_POST['overall_regularity_performance'];
-
-    // Update the data in the database
-    $update_sql = "UPDATE project_evaluations_r1 
-                   SET individual_evaluation = ?, 
-                       objective_methodology = ?, 
-                       planning_team_structure = ?, 
-                       overall_regularity_performance = ? 
-                   WHERE project_id = ? AND evaluation_round = ?";
-    $update_stmt = $con->prepare($update_sql);
-
-    if ($update_stmt) {
-        $update_stmt->bind_param("ddddii", $updated_individual_evaluation, $updated_objective_methodology, $updated_planning_team_structure, $updated_overall_regularity_performance, $project_id, $evaluation_round);
-        $update_stmt->execute();
-
-        if ($update_stmt->affected_rows > 0) {
-            echo "Data for Evaluation Round $evaluation_round updated successfully!";
-        } else {
-            echo "No changes made or failed to update data.";
-        }
-
-        $update_stmt->close();
-    } else {
-        echo "Error in preparing the SQL statement for update.";
-    }
-
-    $con->close();
-}
+// edit_evaluation.php
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['PROJECT_ID']) && isset($_GET['round'])) {
     $project_id = $_GET['PROJECT_ID'];
@@ -73,6 +39,43 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['PROJECT_ID']) && isset($
     echo "Invalid request.";
     exit();
 }
+
+// Update data when the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include('../../../php/config.php');
+
+    // Get updated values from the form
+    $updated_individual_evaluation = $_POST['individual_evaluation'];
+    $updated_objective_methodology = $_POST['objective_methodology'];
+    $updated_planning_team_structure = $_POST['planning_team_structure'];
+    $updated_overall_regularity_performance = $_POST['overall_regularity_performance'];
+
+    // Update the data in the database
+    $update_sql = "UPDATE project_evaluations_r1 
+                   SET individual_evaluation = ?, 
+                       objective_methodology = ?, 
+                       planning_team_structure = ?, 
+                       overall_regularity_performance = ? 
+                   WHERE project_id = ? AND evaluation_round = ?";
+    $update_stmt = $con->prepare($update_sql);
+
+    if ($update_stmt) {
+        $update_stmt->bind_param("ddddii", $updated_individual_evaluation, $updated_objective_methodology, $updated_planning_team_structure, $updated_overall_regularity_performance, $project_id, $evaluation_round);
+        $update_stmt->execute();
+
+        if ($update_stmt->affected_rows > 0) {
+            echo "Data for Evaluation Round $evaluation_round updated successfully!";
+        } else {
+            echo "No changes made or failed to update data.";
+        }
+
+        $update_stmt->close();
+    } else {
+        echo "Error in preparing the SQL statement for update.";
+    }
+
+    $con->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['PROJECT_ID']) && isset($
 
     <h2>Edit Evaluation - Round <?php echo $evaluation_round; ?></h2>
 
-    <form action="edit_evaluations.php?PROJECT_ID=<?php echo $project_id; ?>&round=<?php echo $evaluation_round; ?>" method="POST">
+    <form method="post" action="edit_evaluations_r1.php?PROJECT_ID=<?php echo $project_id; ?>&round=<?php echo $evaluation_round; ?>">
         
         <div class="mb-3">
             <label for="individual_evaluation" class="form-label">Individual Evaluation:</label>

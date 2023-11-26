@@ -104,7 +104,7 @@
                                 <div class="col">
                                     <h5>Evaluation Round 1</h5>
                                     <div>
-                                        <a href="utils/edit_evaluations.php?PROJECT_ID=<?php echo $project_id ?>&round=1">
+                                        <a href="utils/edit_evaluations.php?PROJECT_ID=<?php echo $project_id ?>&round=1" method="GET">
                                             <i class="fa-regular fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                                         </a>
                                     </div>

@@ -54,6 +54,21 @@
                             <label for="date" class="form-label">Date of Creation</label>
                             <input class="form-control" type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" />
                         </div>
+                        <div class="col-4">
+                            <label for="sIncharge" class="form-label">Add Session Incharge</label>
+                            <select class="form-select" name="sIncharge" id="sIncharge" multiple>
+                                <option selected>Select Option:</option>
+                                <?php
+                                    include('../../php/config.php');
+                                    $sql = "SELECT id, name FROM subjectincharge";
+                                    $result = $con->query($sql);
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                                    }
+                                    $con->close();
+                                ?>
+                            </select>
+                        </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>

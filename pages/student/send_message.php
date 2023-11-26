@@ -1,5 +1,4 @@
 <?php
-// send_message.php
 
 include('../../php/config.php');
 

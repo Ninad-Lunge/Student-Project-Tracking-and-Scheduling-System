@@ -2,6 +2,7 @@
     include('../../php/config.php');
 
     $user_id = isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : 0;
+    // echo $user_id;
     $query = "SELECT prn from students WHERE user_id = " . $user_id;
     $s = $con->prepare($query);
     $s->execute();
@@ -30,7 +31,7 @@
                 echo '<div class="col">
                     <a href="project_details.php?PROJECT_ID=' . $row['PROJECT_ID'] . '" class="text-decoration-none text-reset">
                     <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">' . $row['PROJECT_TITLE'] . '</div>
+                        <div class="card-header" style="min-height: 4rem;">' . $row['PROJECT_TITLE'] . '</div>
                         <div class="card-body text-dark">
                             <h5 class="card-title">' . $row['session_title'] . '</h5>
                         </div>

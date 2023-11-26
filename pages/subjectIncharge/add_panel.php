@@ -13,14 +13,9 @@
                 <?php include("../../components/subjectInchargeNavbar.php"); ?>
                 <div class="col py-3 min-vh-100">
                 <?php
-                    // if (isset($_SESSION['session_id'])) {
-                    //     $session_id = $_SESSION['session_id'];
-                    //     echo "Session ID: " . $session_id;
-                    // } else {
-                    //     echo "Session ID not found in the session.";
-                    // }
-                    $session_id = $_SESSION['session_id'];
+                    $session_id = $_GET['session_id'];
                     echo "Session ID: " . $session_id;
+                    $_SESSION['session_id'] = $session_id;
                 ?>
                     <h4>Add Panel Form</h4>
                     <form action="process_form.php" method="post">

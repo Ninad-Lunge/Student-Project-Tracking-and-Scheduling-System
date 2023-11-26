@@ -1,7 +1,7 @@
 <?php
     include('../../php/config.php');
 
-    $sql = "SELECT * FROM session";
+    $sql = "SELECT * FROM session ORDER BY id DESC";
     $result = $con->query($sql);
 
     $row = 0;
@@ -13,8 +13,11 @@
                 <a href="superAdminProjectOverview.php?session_id=' . $session_id . '" class="text-decoration-none text-reset">
                 <div class="card border-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header">' . $row['title'] . ' 
+                    <a href="utils/delete_session.php?session_id=' . $session_id . '" class="text-decoration-none text-reset" onclick="return confirm(\'Are you sure you want to delete this panel?\')">
+                        <i class="fa-solid fa-trash float-end"></i>
+                    </a>
                     <a href="edit_session.php?session_id='. $session_id .'">
-                        <i class="fa-regular fa-pen-to-square float-end" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                        <i class="fa-regular fa-pen-to-square float-end me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                     </a>
                 </div>
                 <div class="card-body text-dark">
