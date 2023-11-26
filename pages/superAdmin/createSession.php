@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <?php require('links.php'); ?>
-    <title>CreateSession</title>
+    <link rel="stylesheet" href="Session.css">
+    <?php require('../../php/links.php'); ?>
+    <title>Create Session</title>
 </head>
 <body>
     <section>
         <div class="container-fluid">
             <div class="row">
-                <?php include("components/superAdminNavbar.php");?>
+                <?php include("../../components/subjectInchargeNavbar.php");?>
                 <div class="col min-vh-100 m-2">
                     <h3>Create Session</h3>
-                    <form class="row g-3" action="add_session.php" method="post">
+                    <form class="row g-3" action="add_session.php" method="post" enctype="multipart/form-data">
                         <div class="col-md-4">
                             <label class="form-label">Session Title</label>
                             <input class="form-control" type="text" placeholder="Ex: Mini-Project I, Seminar II" id="title" name="title">
@@ -46,12 +47,12 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="csv" class="form-label">CSV File</label>
-                            <input class="form-control" type="file" id="csv">
+                            <label for="file" class="form-label">CSV File</label>
+                            <input class="form-control" type="file" id="file" name="file">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Date of Creation</label>
-                            <input class="form-control" type="date" id="doc" value="<?php echo date('Y-m-d'); ?>" />
+                            <label for="date" class="form-label">Date of Creation</label>
+                            <input class="form-control" type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" />
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">Create</button>

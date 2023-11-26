@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Session.css">
+    <link rel="stylesheet" href="../../css/mentor_notification.css">
+    <script src='../../js/notifications.js'></script>
     <?php require('../../php/links.php'); ?>
     <title>MentorDashboard</title>
 </head>
@@ -15,6 +16,57 @@
             <div class="row">
                 <?php include("../../components/mentorNavbar.php"); ?>
                 <div class="col py-3 min-vh-100">
+                    <div class="col text-end">
+                        <i class="fa-regular fa-comment" id="notificationIcon"></i>
+                        <div class="notification-panel" id="notificationPanel">
+                            <span class="close-btn" onclick="closeNotificationPanel()">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </span>
+                            <?php
+                            require('../../php/config.php');
+                            $mentorUserId = $_SESSION['user_id'];
+
+                            echo '<script>';
+                            echo 'var showAllNotifications = false;';
+                            echo '</script>';
+
+                            $query = "SELECT messages.*, users.email AS sender_email
+                                    FROM messages
+                                    JOIN users ON messages.sender_id = users.user_id
+                                    WHERE messages.receiver_id = ?
+                                    ORDER BY messages.timestamp DESC
+                                    LIMIT 3";
+
+                            $stmt = $con->prepare($query);
+
+                            if (!$stmt) {
+                                echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+                            } else {
+                                $stmt->bind_param("i", $mentorUserId);
+
+                                if ($stmt->execute()) {
+                                    $result = $stmt->get_result();
+
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo '<div class="notification-message text-start">';
+                                        echo '<strong>From: ' . $row["sender_email"] . '</strong><br>';
+                                        echo '<strong>Content: ' . $row["content"] . '</strong><br>';
+                                        echo 'Timestamp: ' . $row["timestamp"] . '</div>';
+                                    }
+                                } else {
+                                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                                }
+
+                                $stmt->close();
+                                $con->close();
+                            }
+                            ?>
+
+                            <button class="view-all-btn" onclick="viewAllNotifications()">View All Notifications</button>
+                        </div>
+                    </div>
+
+                    <!-- Grid of sessions -->
                     <div class="row row-cols-1 row-cols-md-4 g-4">
                         <?php include('display_sessions.php'); ?>
                     </div>
@@ -23,81 +75,37 @@
         </div>
     </section>
 
-    <?php
-        include('../../php/config.php');
-        
-        if (isset($_POST["submit"])){
-            $title = $_POST["title"];
-            $branch = $_POST['branch'];
-            $semester = $_POST['semester'];
-            $date_of_creation = $_POST[''];
-        
-            $pname = $title."-".$_FILES["document"]["name"];
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var notificationPanel = document.getElementById("notificationPanel");
 
-            $tname = $_FILES["document"]["tmp_name"];
-
-            $uploads_dir = '../csv_files';
-            move_uploaded_file($tname, $uploads_dir.'/'.$pname);
-
-            $sql = "INSERT INTO session_table1(title,branch,semester,csv) VALUES ('$title','$branch','$semester','$pname')";
-
-            if(mysqli_query($con, $sql)){
-                echo "File Successfully uploaded";
-
-                $session_id_query = "SELECT id FROM session_table1 WHERE title='$title'";
-                $session_id_result = mysqli_query($conn, $session_id_query);
-                if ($session_id_result) {
-                    $row = mysqli_fetch_assoc($session_id_result);
-                    $session_id = $row['id'];
-
-                    $csvFile = "../../csv_files/{$pname}";
-
-                    // Open and read the CSV file
-                    if (($handle = fopen($csvFile, "r")) !== FALSE) {
-                        // Loop through the CSV data
-                        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                            // Assuming the CSV file has three columns (proj_title, domain, description, leader, lead_prn, m1_prn, m2_prn, m3_prn)
-                            $proj_title = $data[0];
-                            $domain = $data[1];
-                            $description = $data[2];
-                            $leader = $data[3];
-                            $lead_prn = $data[4];
-                            $m1_prn = $data[5];
-                            $m2_prn = $data[6];
-                            $m3_prn = $data[7];
-                            
-                            // Insert data into the MySQL table
-                            $query = "INSERT INTO projects (PROJECT_TITLE, DOMAIN, DESCRIPTION, TEAM_LEADER, LEADER_PRN, MEMBER_1_PRN, MEMBER_2_PRN, MEMBER_3_PRN, SESSION_ID) 
-                            VALUES ('$proj_title', '$domain', '$description', '$leader', '$lead_prn', '$m1_prn', '$m2_prn', '$m3_prn', '$session_id')";
-                            
-                            if ($con->query($query) === TRUE) {
-                                echo "Record inserted successfully.<br>";
-                            } else {
-                                echo "Error: " . $query . "<br>" . $con->error;
-                            }
-                        }
-                        
-                        fclose($handle);
-                    }
+            document.getElementById("notificationIcon").addEventListener("click", function() {
+                if (notificationPanel.style.display === "none" || notificationPanel.style.display === "") {
+                    notificationPanel.style.display = "block";
+                } else {
+                    notificationPanel.style.display = "none";
                 }
-                else {
-                    echo "Error fetching session_id: " . $con->error;
-                }
+            });
+        });
 
-                echo '<script>
-                        var closeButton = document.getElementById("closeForm");
-                        if (closeButton) {
-                            closeButton.click();
-                        }
-                        </script>';
-            }
-            else{
-                echo "Error: " . $sql . "<br>" . $con->error;
-            }
+        function closeNotificationPanel() {
+            var notificationPanel = document.getElementById("notificationPanel");
+            notificationPanel.style.display = "none";
         }
 
-        // Close connection
-        mysqli_close($con);
-    ?>
+        function viewAllNotifications() {
+            showAllNotifications = true;
+            window.location.href = "all_notifications.php";
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!showAllNotifications) {
+                var notifications = document.querySelectorAll('.notification-message');
+                for (var i = 3; i < notifications.length; i++) {
+                    notifications[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
 </body>
 </html>

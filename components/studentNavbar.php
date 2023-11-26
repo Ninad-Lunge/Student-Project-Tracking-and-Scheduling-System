@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+    } else {
+        echo "Session ID not found in the session.";
+    }
+?>
+
 <div class="col-auto col-md-3 col-xl-1 px-sm-1 px-0 bg-dark sticky-top">
     <div class="d-flex flex-column align-items-middle align-items-middle px-3 pt-2 text-white min-vh-100 position-fixed">
         <a href="#" class="d-flex align-items-middle p-2 pb-5 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -10,7 +20,7 @@
                 </a>
             </li>
             <li class="nav-item pb-3">
-                <a href="#" class="nav-link align-middle px-0">
+                <a href="request_meeting.php" class="nav-link align-middle px-0">
                     <i class="fa-solid fa-calendar-days fs-2" style="color: white"></i><span class="ms-1 d-none d-sm-inline"></span>
                 </a>
             </li>

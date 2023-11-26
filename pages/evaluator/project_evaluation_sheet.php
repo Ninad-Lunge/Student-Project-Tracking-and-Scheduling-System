@@ -182,7 +182,7 @@
                     </thead>                    
                         <tbody>
                             <tr>
-                                <td><input type="int" name="Final_SRS"></td>
+                                <td><input type="int" name="final_SRS"></td>
                                 <td><input type="int" name="Project_implementation"></td>
                                 <td><input type="int" name="Demo_presentation"></td>
                                 <td><input type="int" name="overall_regularity_performance"></td>

@@ -6,39 +6,16 @@
     <title>Project Details</title>
     <?php require('../../php/links.php'); ?>
 </head>
-<body class="me-3">
-    <?php
-        if (isset($_GET['success']) && $_GET['success'] == 1) {
-            echo "<div class='toast align-items-center' role='alert' aria-live='assertive' aria-atomic='true'>
-                <div class='d-flex'>
-                    <div class='toast-body'>
-                        File uploaded successfully!
-                    </div>
-                    <button type='button' class='btn-close me-2 m-auto' data-bs-dismiss='toast' aria-label='Close'></button>
-                </div>
-            </div>";
-            echo "
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var toast = new bootstrap.Toast(document.querySelector('.toast'));
-                    toast.show();
-                });
-            </script>
-            ";
-        }
-    ?>
-
-    <div class="contaniner">
+<body>
+    <div class="contaniner-fluid pe-3">
         <div class="row">
-            <?php include("../../components/studentNavbar.php"); ?>
-            <div class="col min-vh-100">
+            <?php include("../../components/superAdminNavbar.php"); ?>
+            <div class="col py-3 min-vh-100">
                 <?php
                     if (isset($_GET['PROJECT_ID'])) {
                         $project_id = intval($_GET['PROJECT_ID']);
-                        $_SESSION["PROJECT_ID"] = $_GET["PROJECT_ID"];
 
                         include('../../php/config.php');
-
                         $stmt = $con->prepare("SELECT PROJECT_TITLE FROM projects WHERE PROJECT_ID = ?");
                         $stmt->bind_param("i", $project_id);
                         $stmt->execute();
@@ -165,19 +142,7 @@
 
                 <div class="container-fluid my-3 px-5 pt-3 border border-secondary rounded">
                     <div class="row pb-3">
-                        <div class="col">
-                            <h5>Files and Hyperlinks</h5>
-                        </div>
-                        <div class="col">
-                            <?php
-                                if (isset($_GET['PROJECT_ID'])) {
-                                    $project_id = $_GET['PROJECT_ID'];
-                                    echo '<a href="add_files.php?PROJECT_ID=' . $project_id . '">
-                                        <button type="button" class="btn btn-success float-end">Add Files</button>
-                                    </a>';
-                                }
-                            ?>
-                        </div>
+                        <h5>Files and Hyperlinks</h5>
                     </div>
                     <div class="row">
                         <table class="table">

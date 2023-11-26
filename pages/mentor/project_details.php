@@ -14,6 +14,7 @@
                 <?php
                     if (isset($_GET['PROJECT_ID'])) {
                         $project_id = intval($_GET['PROJECT_ID']);
+                        $_SESSION['PROJECT_ID'] = $_GET['PROJECT_ID'];
 
                         include('../../php/config.php');
                         $stmt = $con->prepare("SELECT PROJECT_TITLE FROM projects WHERE PROJECT_ID = ?");

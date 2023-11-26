@@ -1,7 +1,7 @@
 <?php
     include('../../php/config.php');
 
-    $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+    $user_id = isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : 0;
     $query = "SELECT prn from students WHERE user_id = " . $user_id;
     $s = $con->prepare($query);
     $s->execute();

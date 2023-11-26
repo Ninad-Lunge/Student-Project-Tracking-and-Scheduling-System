@@ -14,7 +14,7 @@
         <div class="container-fluid">
             <div class="row">
                 <?php include("../../components/evaluatorNavbar.php"); ?>
-                <div class="col py-3">
+                <div class="col py-3 min-vh-100">
                     <div class="row row-cols-1 row-cols-md-4 g-4">
                         <?php include('display_sessions.php'); ?>
                     </div>
